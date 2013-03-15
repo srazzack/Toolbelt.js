@@ -360,7 +360,6 @@ var Toolbelt = {
                 for (var key in defaultObj) {
                     if (anyObject[key] == null) {
                         anyObject[key] = defaultObj[key];
-                        console.log('here');
                     }
                 }
                 return anyObject;
