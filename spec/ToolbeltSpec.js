@@ -427,39 +427,178 @@ describe("Toolbelt", function() {
       expect(Toolbelt.array.range(0)).toEqual([]);
     });
 });
-
-/*
     describe("Toolbelt ", function() {  
       it("should return ", function() {
-      expect(Toolbelt..([])).toEqual(_.());
+      expect(Toolbelt.object.keys({one : 1, two : 2, three : 3})).toEqual(_.keys({one : 1, two : 2, three : 3}));
     });  
-      it("should return ", function() {
-      expect(Toolbelt..([])).toEqual(_.());
+      it("should return identical to underscore functions ", function() {
+      expect(Toolbelt.object.keys({name : 'samy', age : 14, family : 'Egyptian'})).toEqual(_.keys({name : 'samy', age : 14, family : 'Egyptian'}));
     });
 });
     describe("function should return object", function() {  
-      it("should return ", function() {
-      expect(Toolbelt..([])).toEqual();
+      it("Object 'key' check returning keys", function() {
+      expect(Toolbelt.object.keys({one : 1, two : 2, three : 3})).toEqual(["one", "two", "three"]);
     });  
-      it("should return ", function() {
-      expect(Toolbelt..([])).toEqual();
+      it("Object key check returning keys ", function() {
+      expect(Toolbelt.object.keys({name : 'samy', age : 14, family : 'Egyptian'})).toEqual(["name", "age", "family"]);
     });
 });
-    */
-    describe("Toolbelt function ", function() {  
+    describe("Is underscore a function? ", function() {  
       it("should return the same as underscore's 'functions' ", function() {
       expect(Toolbelt.object.functions(_)).toEqual(_.functions(_));
     });  
-      /*it("should return ", function() {
-      expect(Toolbelt..([])).toEqual(_.());
-    });
 });
-    describe("function should return object", function() {  
+/*    describe("function should return object", function() {  
       it("should return ", function() {
       expect(Toolbelt..([])).toEqual();
     });  
       it("should return ", function() {
       expect(Toolbelt..([])).toEqual();
-    });*/
-});
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+/*    describe("function should return object", function() {  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });  
+      it("should return ", function() {
+      expect(Toolbelt..([])).toEqual();
+    });
+});*/
+
 });

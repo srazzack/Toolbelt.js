@@ -1,6 +1,10 @@
 //underscore.js rewrite ._first
 var Toolbelt = {
     array: {
+
+        //the first function returns the first element of an array passed. 
+        //If an optional 'n' parameter is passed, the first 'n' elements 
+        //of the array will be returned. 
         first: function (anyArray, n) {
             var isArray = (anyArray instanceof Array),
                 isNum = (typeof n === 'number'),
@@ -21,6 +25,11 @@ var Toolbelt = {
                 return anyArray[0];
             }
         },
+
+        //The 'initial' function will return the all the elements
+        //of the array passed except for the last element. 
+        //If an 'n' parameter is passed, 'initial' will return
+        //all elements if the array except for the last 'n' elements.
         initial: function (anyArray, n) {
             var isArray = (anyArray instanceof Array),
                 valRange = (n >= 0 || n == null),
@@ -43,6 +52,9 @@ var Toolbelt = {
                 return result;
             }
         },
+
+        //The 'last' function returns the last element of the array
+        //or last 'n' elements
         last: function (anyArray, n) {
             var isArray = (anyArray instanceof Array),
                 valRange = n >= anyArray.length,
@@ -59,6 +71,8 @@ var Toolbelt = {
                 return anyArray[anyArray.length - 1];
             }
         },
+
+        //The 'rest' function returns the Array l
         rest: function (anyArray, n) {
             var isArray = (anyArray instanceof Array),
                 isNull = (n == 0 || n == null),
@@ -211,8 +225,9 @@ var Toolbelt = {
             if (!list) return {};
             var result = {}, i;
             for (i = 0; i < list.length; i++) {
+                var element = list[i];
                 if (values) {
-                    var element = list[i];
+
                     result[element] = values[i];
                 }
                 if (!values) {
@@ -340,7 +355,7 @@ var Toolbelt = {
             var obj = (anyObject instanceof Object),
                 result = {};
             if (!obj) throw new TypeError('Invalid Object');
-            var argArray = Array.prototype.slice.call(arguments);
+            var argArray = Array.prototype.slice.call(arguments, 1);
             //argArray.shift();
             //console.log(argArray);
             for (var key in anyObject) {
@@ -358,7 +373,7 @@ var Toolbelt = {
 
             if (defaultObj) {
                 for (var key in defaultObj) {
-                    if (anyObject[key] == null) {
+                    if (anyObject[key] == null||'undefined') {
                         anyObject[key] = defaultObj[key];
                     }
                 }
@@ -370,8 +385,120 @@ var Toolbelt = {
         clone: function (anyObject) {
             var obj = (anyObject instanceof Object && arguments instanceof Object),
                 result = {};
+            var isArray = (anyObject instanceof Array);
             if (!obj) return obj;
-            return
+            result = (isArray ? anyObject.slice(): Toolbelt.object.extend({}, anyObject));
+            return result;
+        },
+        tap: function(object, interceptor){},
+
+        
+        has:function (anyObject, key){
+            for(key in anyObject){
+                if(key !== undefined || null){return true;}
+            }
+        },
+        isEqual: function(oneObject, anotherObject){
+
+        },
+
+        
+        isEmpty: function(anyObject){
+        if (anyObject == null){return true};
+        if(anyObject instanceof Array || anyObject instanceof String){
+            return anyObject.length === 0;
+            for (var property in anyObject){
+                if(Toolbelt.object.has(anyObject, property)){return false;}   
+            }
         }
+        },
+        isElement: function(anyObject){//question about nodeType and '!!' operator and use}
+        },
+        isArray: function(anyObject){
+            var result;
+            anyObject instanceof Array ? result = true : result = false; 
+            return result;
+        },
+        isObject: function(anyObject){
+            var result;
+            anyObject instanceof Object ? result = true : result = false; 
+            return result;
+        },
+        isFinite: function(anyObject){
+            if(Number(anyObject)){return true;}
+            return false;
+        },
+        isNaN: function(anyObject){
+            var result;
+            if(!NaN){anyObject instanceof Number ? result = true : result = false;}
+            return false;
+        },
+        isNull: function(anyObject){
+            var result;
+            anyObject === null ? result = true : result = false;
+            return result; 
+        },
+        isBoolean: function(anyObject){
+            var result;
+            anyObject instanceof boolean ? result = true : result = false;
+            return result;
+        },
+        isUndefined: function(anyObject){
+            var result;
+            anyObject === void 0 ? result = true : result = false;
+            return result;
+        }
+
+    },
+    functions: {
+        /*bind: function (someFunc, context){
+            var nativeBind = function.prototype.bind; 
+            if (nativeBind){  
+                var boolBind = true;
+                boolBind ? nativeBind.apply(someFunc, partial) : full();
+            }
+            var partial = Array.prototype.slice.call(arguments, 1);
+            var args = Array.prototype.slice.call(arguments, 2);
+            function full (){
+                var fullArgs = Array.prototype.slice.call(arguments);
+                var applied = someFunc.apply(context, args.concat(fullArgs));
+                return applied;
+            }
+               
+        },*/
+        bind: function (func, context){
+            var self = this; 
+            var nativeBind = Function.prototype.bind; 
+            //ternary operator some thing here
+            if (!nativeBind){ 
+            var args = Array.prototype.slice.call(arguments,1);
+                if (!context) {
+                context = [];
+                context.push(args);
+                return self.apply(someFunc, context);
+                }
+                return function(){
+                var addArgs = Array.prototype.slice.call(arguments, 2);
+                    return self.apply(context, addArgs);
+                }
+    
+            }
+
+
+               
+        },
+        partial: function (someFunc){},
+        bindAll: function (anyObject){},
+        memoize: function(someFunc, hasher){},
+        delay: function (someFunc, wait){},
+        defer: function (someFunc){},
+        throttle: function(someFunc, wait){},
+        return: function() {},
+        debounce: function(someFunc, wait, immediate){},
+        once: function (someFunc){},
+        wrap: function(someFunc, wrapper){},
+        compose: function (){},
+        after: function (){}
     }
+
 };
