@@ -373,7 +373,7 @@ var Toolbelt = {
 
             if (defaultObj) {
                 for (var key in defaultObj) {
-                    if (anyObject[key] == null||'undefined') {
+                    if (anyObject[key] == null || 'undefined') {
                         anyObject[key] = defaultObj[key];
                     }
                 }
@@ -387,63 +387,68 @@ var Toolbelt = {
                 result = {};
             var isArray = (anyObject instanceof Array);
             if (!obj) return obj;
-            result = (isArray ? anyObject.slice(): Toolbelt.object.extend({}, anyObject));
+            result = (isArray ? anyObject.slice() : Toolbelt.object.extend({}, anyObject));
             return result;
         },
-        tap: function(object, interceptor){},
-
-        
-        has:function (anyObject, key){
-            for(key in anyObject){
-                if(key !== undefined || null){return true;}
+        tap: function (object, interceptor) {},
+        has: function (anyObject, key) {
+            for (key in anyObject) {
+                if (key !== undefined || null) {
+                    return true;
+                }
             }
         },
-        isEqual: function(oneObject, anotherObject){
-
+        isEqual: function (oneObject, anotherObject) {
         },
-
-        
-        isEmpty: function(anyObject){
-        if (anyObject == null){return true};
-        if(anyObject instanceof Array || anyObject instanceof String){
-            return anyObject.length === 0;
-            for (var property in anyObject){
-                if(Toolbelt.object.has(anyObject, property)){return false;}   
+        isEmpty: function (anyObject) {
+            if (anyObject == null) {
+                return true
+            };
+            if (anyObject instanceof Array || anyObject instanceof String) {
+                return anyObject.length === 0;
+                for (var property in anyObject) {
+                    if (Toolbelt.object.has(anyObject, property)) {
+                        return false;
+                    }
+                }
             }
-        }
         },
-        isElement: function(anyObject){//question about nodeType and '!!' operator and use}
+        isElement: function (anyObject) { //question about nodeType and '!!' operator and use}
         },
-        isArray: function(anyObject){
+        isArray: function (anyObject) {
             var result;
-            anyObject instanceof Array ? result = true : result = false; 
+            anyObject instanceof Array ? result = true : result = false;
             return result;
         },
-        isObject: function(anyObject){
+        isObject: function (anyObject) {
             var result;
-            anyObject instanceof Object ? result = true : result = false; 
+            anyObject instanceof Object ? result = true : result = false;
             return result;
         },
-        isFinite: function(anyObject){
-            if(Number(anyObject)){return true;}
+        isFinite: function (anyObject) {
+            if (Number(anyObject)) {
+                return true;
+            }
             return false;
         },
-        isNaN: function(anyObject){
+        isNaN: function (anyObject) {
             var result;
-            if(!NaN){anyObject instanceof Number ? result = true : result = false;}
+            if (!NaN) {
+                anyObject instanceof Number ? result = true : result = false;
+            }
             return false;
         },
-        isNull: function(anyObject){
+        isNull: function (anyObject) {
             var result;
             anyObject === null ? result = true : result = false;
-            return result; 
+            return result;
         },
-        isBoolean: function(anyObject){
+        isBoolean: function (anyObject) {
             var result;
             anyObject instanceof boolean ? result = true : result = false;
             return result;
         },
-        isUndefined: function(anyObject){
+        isUndefined: function (anyObject) {
             var result;
             anyObject === void 0 ? result = true : result = false;
             return result;
@@ -451,54 +456,55 @@ var Toolbelt = {
 
     },
     functions: {
-        /*bind: function (someFunc, context){
-            var nativeBind = function.prototype.bind; 
-            if (nativeBind){  
-                var boolBind = true;
-                boolBind ? nativeBind.apply(someFunc, partial) : full();
+        bind: function (somefunc, context) {
+            var slice = Array.prototype.slice;
+            var addArgs = slice.call(arguments, 2);
+            return function () {
+                return somefunc.apply(context, addArgs.concat(slice.call(arguments)));
             }
-            var partial = Array.prototype.slice.call(arguments, 1);
-            var args = Array.prototype.slice.call(arguments, 2);
-            function full (){
-                var fullArgs = Array.prototype.slice.call(arguments);
-                var applied = someFunc.apply(context, args.concat(fullArgs));
-                return applied;
-            }
-               
-        },*/
-        bind: function (func, context){
-            var self = this; 
-            var nativeBind = Function.prototype.bind; 
-            //ternary operator some thing here
-            if (!nativeBind){ 
-            var args = Array.prototype.slice.call(arguments,1);
-                if (!context) {
-                context = [];
-                context.push(args);
-                return self.apply(someFunc, context);
-                }
-                return function(){
-                var addArgs = Array.prototype.slice.call(arguments, 2);
-                    return self.apply(context, addArgs);
-                }
-    
-            }
-
-
-               
         },
-        partial: function (someFunc){},
-        bindAll: function (anyObject){},
-        memoize: function(someFunc, hasher){},
-        delay: function (someFunc, wait){},
-        defer: function (someFunc){},
-        throttle: function(someFunc, wait){},
-        return: function() {},
-        debounce: function(someFunc, wait, immediate){},
-        once: function (someFunc){},
-        wrap: function(someFunc, wrapper){},
-        compose: function (){},
-        after: function (){}
+        partial: function (someFunc) {
+            var slice = Array.prototype.slice;
+            var addArgs = slice.call(arguments, 1);
+            return function () {
+                return someFunc.apply(this, addArgs.concat(slice.call(arguments)));
+            }
+        },
+        bindAll: function (anyObject) {
+            var slice = Array.prototype.slice;
+            var allfuncs = slice.call(arguments, 1);
+
+            function interBind(allfuncs) {
+                anyObject[allfuncs] = Toolbelt.functions.bind(anyObject[allfuncs], anyObject);
+                return anyObject;
+            }
+        },
+        memoize: function (someFunc, cache) {
+            var cache = {};
+            return function(){
+                var property = cache.apply(this, arguments);
+                if(property in cache) {
+                return cache[property];
+                } 
+                else {
+                return cache[property] = someFunc.apply(this. arguments);
+                }
+            }
+        },
+        delay: function (someFunc, time) {
+            var slice = Array.prototype.slice; 
+            var funcArgs = slice.call(arguments, 2);
+            var applfunc = (function(){return someFunc.apply(null, funcArgs);});
+            return setTimeout(applfunc, time);
+        },
+        defer: function (someFunc) {},
+        throttle: function (someFunc, wait) {},
+        return : function () {},
+        debounce: function (someFunc, wait, immediate) {},
+        once: function (someFunc) {},
+        wrap: function (someFunc, wrapper) {},
+        compose: function () {},
+        after: function () {}
     }
 
 };
