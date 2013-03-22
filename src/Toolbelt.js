@@ -487,7 +487,7 @@ var Toolbelt = {
                 return cache[property];
                 } 
                 else {
-                return cache[property] = someFunc.apply(this. arguments);
+                return cache[property] = someFunc.apply(this, arguments);
                 }
             }
         },
