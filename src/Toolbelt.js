@@ -1,5 +1,33 @@
 //underscore.js rewrite ._first
 var Toolbelt = {
+
+    dom: {
+        get: function( selector ) {
+            if(selector.indexOf('.') >= 0) {
+                //console.log("here");
+                var selected = document.querySelectorAll(selector);
+                return selected;
+            }
+            else if(selector.indexOf('#') >= 0) {
+                //console.log("else here");
+                var selected = document.getElementById(selector);
+                return selected;
+            }
+            else if(selector.indexOf('>') >= 0){
+                //console.log("else else here");
+                var result = [];
+                var selected = document.getElementsByClassName(selector);
+                return selected;
+            }
+            else {
+                console.log("else");
+                var seleceted = document.getElementsByTagName(selector);
+                return selected; 
+            }
+        }
+           
+    },
+
     array: {
 
         //the first function returns the first element of an array passed. 
@@ -230,7 +258,7 @@ var Toolbelt = {
 
                     result[element] = values[i];
                 }
-                if (!values) {
+                else {
                     result[element[0]] = element[1];
                 }
             }
@@ -243,7 +271,7 @@ var Toolbelt = {
                     found = true;
                     return i;
                 }
-                if (found = false) {
+                else {
                     return -1
                 }
             }
