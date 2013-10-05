@@ -1,8 +1,9 @@
 //underscore.js rewrite ._first
 var Toolbelt = {
 
+    //Not part of underscore
     dom: {
-        get: function( selector ) {
+        select: function( selector ) {
             if(selector.indexOf('.') >= 0) {
                 //console.log("here");
                 var selected = document.querySelectorAll(selector);
@@ -28,6 +29,7 @@ var Toolbelt = {
            
     },
 
+    //Underscore Arrays
     array: {
 
         //the first function returns the first element of an array passed. 
