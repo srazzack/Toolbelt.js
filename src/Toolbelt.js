@@ -127,13 +127,13 @@ var Toolbelt = {
             }
         },
         compact: function (anyArray) {
-            var TruthyValues = [];
+            var truthyValues = [];
             for (var index in anyArray) {
                 if (anyArray[index]) {
-                    TruthyValues.push(anyArray[index]);
+                    truthyValues.push(anyArray[index]);
                 }
             }
-            return TruthyValues;
+            return truthyValues;
         },
         flatten: function (anyArray, singleLevel) {
             if (singleLevel == true) {
