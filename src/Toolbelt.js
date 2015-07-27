@@ -531,7 +531,9 @@ var Toolbelt = {
         throttle: function (someFunc, wait) {},
         return : function () {},
         debounce: function (someFunc, wait, immediate) {},
-        once: function (someFunc) {},
+        once: function (someFunc) {
+            
+        },
         wrap: function (someFunc, wrapper) {},
         compose: function () {},
         after: function () {}
